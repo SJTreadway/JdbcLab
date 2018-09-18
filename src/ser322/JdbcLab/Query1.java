@@ -16,7 +16,7 @@ public class Query1
 
         if (args.length != 4)
         {
-            System.out.println("USAGE: java ser322.JdbcLab.Query1 <url> <user> <passwd> <driver>");
+            System.out.println("USAGE: java ser322.JdbcLab <url> <user> <passwd> <driver> Query1");
             System.exit(0);
         }
         String _url = args[0];
@@ -31,13 +31,13 @@ public class Query1
             stmt = conn.createStatement();
 
             // Step 4: Make a query
-            rs = stmt.executeQuery("Select E.EMPNO, E.ENAME, D.DNAME from EMP E, DEPT D;");
+            rs = stmt.executeQuery("SELECT E.EMPNO, E.ENAME, D.DNAME FROM EMP E, DEPT D;");
 
             // Step 5: Display the results
             while (rs.next()) {
-                System.out.print(rs.getInt(1) + "\t");
-                System.out.print(rs.getString(2) + "\t ");
-                System.out.print(rs.getString(3));
+                System.out.print(rs.getInt("emp_num") + "\t");
+                System.out.print(rs.getString("emp_name") + "\t ");
+                System.out.print(rs.getString("dept_name"));
             }
         }
         catch (Exception exc)
