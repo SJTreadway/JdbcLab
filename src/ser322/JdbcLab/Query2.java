@@ -1,4 +1,4 @@
 package ser322.JdbcLab;
 
-public class dml1 {
+public class Query2 {
 }
