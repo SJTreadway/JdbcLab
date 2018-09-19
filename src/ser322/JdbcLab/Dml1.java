@@ -1,18 +1,18 @@
 package ser322.JdbcLab;
 
+import java.math.BigDecimal;
 import java.sql.*;
 
 public class Dml1
 {
     public static void main(String[] args)
     {
-        ResultSet rs = null;
         PreparedStatement stmt = null;
         Connection conn = null;
 
         if (args.length != 8)
         {
-            System.out.println("USAGE: java ser322.JdbcLab <url> <user> <passwd> <driver> Dml1 <customer id> <product id> <name> <quantity>");
+            System.out.println("USAGE: java ser322.JdbcLab <url> <user> <passwd> <driver> <customer id> <product id> <name> <quantity>");
             System.exit(0);
         }
         String _url = args[0];
@@ -24,16 +24,20 @@ public class Dml1
             conn = DriverManager.getConnection(_url, args[1], args[2]);
 
             // Step 3: Create a statement
-            stmt = conn.prepareStatement("INSERT INTO CUSTOMER('CUSTID', 'PID', 'NAME', 'QUANTITY') VALUES(?, ?, ?, ?, ?);");
-            stmt.setString(1, args[4]);
-            stmt.setString(2, args[5]);
+            stmt = conn.prepareStatement("INSERT INTO CUSTOMER VALUES(?, ?, ?, ?);");
+            stmt.setInt(1, new Integer(args[4]));
+            stmt.setInt(2, new Integer(args[5]));
             stmt.setString(3, args[6]);
-            stmt.setString(4, args[7]);
+            stmt.setInt(4, new Integer(args[7]));
 
             // Step 4: Make a query
-            rs = stmt.executeQuery();
+            stmt.executeUpdate();
 
-            System.out.println("SUCCESS!");
+            System.out.println("SUCCESS! Added Customer: <" + args[4] + ", " + args[5] + ", " + args[6] + ", " + args[7] + ">");
+        }
+        catch (SQLException sqlexc)
+        {
+            sqlexc.printStackTrace();
         }
         catch (Exception exc)
         {
@@ -41,8 +45,6 @@ public class Dml1
         }
         finally {  // ALWAYS clean up your DB resources
             try {
-                if (rs != null)
-                    rs.close();
                 if (stmt != null)
                     stmt.close();
                 if (conn != null)

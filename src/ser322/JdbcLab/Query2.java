@@ -12,7 +12,7 @@ public class Query2
 
         if (args.length != 5)
         {
-            System.out.println("USAGE: java ser322.JdbcLab <url> <user> <passwd> <driver> Query2 <DeptNo>");
+            System.out.println("USAGE: java ser322.JdbcLab <url> <user> <passwd> <driver> <DeptNo>");
             System.exit(0);
         }
         String _url = args[0];
@@ -31,10 +31,15 @@ public class Query2
 
             // Step 5: Display the results
             while (rs.next()) {
-                System.out.print(rs.getInt("dept_name") + "\t");
-                System.out.print(rs.getString("customer_name") + "\t ");
-                System.out.print(rs.getString("total"));
+                System.out.print(rs.getString("dname") + "\t");
+                System.out.print(rs.getString("name") + "\t ");
+                System.out.print(rs.getInt(3));
+                System.out.println();
             }
+        }
+        catch (SQLException sqlexc)
+        {
+            sqlexc.printStackTrace();
         }
         catch (Exception exc)
         {

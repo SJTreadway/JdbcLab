@@ -13,10 +13,9 @@ public class Query1
         ResultSet rs = null;
         Statement stmt = null;
         Connection conn = null;
-
         if (args.length != 4)
         {
-            System.out.println("USAGE: java ser322.JdbcLab <url> <user> <passwd> <driver> Query1");
+            System.out.println("USAGE: java ser322.JdbcLab <url> <user> <passwd> <driver>");
             System.exit(0);
         }
         String _url = args[0];
@@ -31,14 +30,18 @@ public class Query1
             stmt = conn.createStatement();
 
             // Step 4: Make a query
-            rs = stmt.executeQuery("SELECT E.EMPNO, E.ENAME, D.DNAME FROM EMP E, DEPT D;");
+            rs = stmt.executeQuery("SELECT E.EMPNO, E.ENAME, D.DNAME FROM EMP E, DEPT D WHERE E.DEPTNO = D.DEPTNO;");
 
             // Step 5: Display the results
             while (rs.next()) {
-                System.out.print(rs.getInt("emp_num") + "\t");
-                System.out.print(rs.getString("emp_name") + "\t ");
-                System.out.print(rs.getString("dept_name"));
+                System.out.print(rs.getInt("empno") + "\t");
+                System.out.print(rs.getString("ename") + "\t ");
+                System.out.print(rs.getString("dname") + "\n");
             }
+        }
+        catch (SQLException sqlexc)
+        {
+            sqlexc.printStackTrace();
         }
         catch (Exception exc)
         {
