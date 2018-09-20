@@ -1,6 +1,5 @@
 package ser322.JdbcLab;
 
-import java.math.BigDecimal;
 import java.sql.*;
 
 public class Dml1
