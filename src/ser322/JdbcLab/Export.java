@@ -17,9 +17,14 @@ import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
 public class Export {
 
-    //replace file with Country.xml
-
     public static void main(String[] args) {
+
+        if (args.length != 5)
+        {
+            System.out.println("USAGE: java ser322.JdbcLab.Export <url> <user> <pwd> <driver> <filename>");
+            System.exit(0);
+        }
+
         final String JDBCURL = args[3];
         final String JDBCDRIVER = args[0];
         final String CUSTOMERQUERY = "select * from customer";
