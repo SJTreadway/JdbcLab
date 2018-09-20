@@ -12,7 +12,7 @@ public class Dml1
 
         if (args.length != 8)
         {
-            System.out.println("USAGE: java ser322.JdbcLab <url> <user> <passwd> <driver> <customer id> <product id> <name> <quantity>");
+            System.out.println("USAGE: java ser322.JdbcLab.Dml1 <url> <user> <passwd> <driver> <customer id> <product id> <name> <quantity>");
             System.exit(0);
         }
         String _url = args[0];

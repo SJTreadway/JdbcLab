@@ -12,7 +12,7 @@ public class Query2
 
         if (args.length != 5)
         {
-            System.out.println("USAGE: java ser322.JdbcLab <url> <user> <passwd> <driver> <DeptNo>");
+            System.out.println("USAGE: java ser322.JdbcLab.Query2 <url> <user> <passwd> <driver> <DeptNo>");
             System.exit(0);
         }
         String _url = args[0];

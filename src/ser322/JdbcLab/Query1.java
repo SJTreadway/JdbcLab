@@ -15,7 +15,7 @@ public class Query1
         Connection conn = null;
         if (args.length != 4)
         {
-            System.out.println("USAGE: java ser322.JdbcLab <url> <user> <passwd> <driver>");
+            System.out.println("USAGE: java ser322.JdbcLab.Query1 <url> <user> <passwd> <driver>");
             System.exit(0);
         }
         String _url = args[0];
